@@ -25,8 +25,18 @@ public class FizzBuzz {
      * @return `true` if a is evenly divisible by b, `false` otherwise
      * @throws IllegalArgumentException if b is zero
      */
-    public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    public static boolean divides(int a, int b) {
+    	
+    	
+	if(b == 0){
+		throw new IllegalArgumentException();
+	}else if(a%b==0){
+		return true;
+	}return false;
+		
+    	
+        
+        
     }
 
     /**
@@ -41,7 +51,17 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+    	
+    	if(n%3==0 && n%5==0){
+    		return "15: FizzBuzz";
+    	}else if 
+    		(n%3==0){
+    		return n + ": Fizz";
+    	}else if (n%5==0){
+    		return n + ": Buzz";
+    	}
+		return null;
+        
     }
 
     /**
@@ -54,8 +74,41 @@ public class FizzBuzz {
      * @return an array of divisibility messages
      * @throws IllegalArgumentException if the given end is less than the given start
      */
-    public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    public static String[] messages(int start, int end) {
+    	
+    	if(end<start){
+    		throw new IllegalArgumentException();
+    	}
+    	
+    	String[] messages = new String[end-start];
+    	int arrayCounter = 0;
+    	for(int i = start;i< end;i++){
+    		String currentMessage = message(i);
+    		if(currentMessage  != null){
+    			
+    			messages[arrayCounter] = currentMessage;
+    			arrayCounter++;
+    			
+    		
+    		
+    		
+    		}
+    		
+    		
+	
+    	}
+    	
+    	String [] newMessagesArray = new String[arrayCounter];
+    	int newCounter = 0;
+		
+    	for(int j = 0;j<messages.length;j++){
+    		if (messages[j] !=null){
+    			newMessagesArray[newCounter] = messages[j];
+    			newCounter++;
+    		}
+    	}
+    	
+    	return newMessagesArray;
     }
 
     /**
@@ -63,7 +116,11 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new NotImplementedException();
+        
+       System.out.println(messages(1,115));
+        
     }
+    
+    
 
 }
