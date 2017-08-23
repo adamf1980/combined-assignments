@@ -4,8 +4,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Rational implements IRational {
 	
-	int numerator;
-	int denominator;
+	private int numerator;
+	private int denominator;
     /**
      * Constructor for rational values of the type:
      * <p>
@@ -76,6 +76,8 @@ public class Rational implements IRational {
     			
     		
     			return false;
+    			
+    			
     		
     }
 
@@ -86,15 +88,24 @@ public class Rational implements IRational {
      *
      * @return a string representation of this rational value
      */
+    
     @Override
     public String toString() {
-        String stringNum = String.valueOf(this.getNumerator());
-        String stringDenom = String.valueOf(this.getDenominator());
-        
-        if (this.getNumerator()/this.getDenominator() > -1){
-        	return (stringNum + "/" + stringDenom);
-        }
-        
-        return ("-" + stringNum + "/" + stringDenom);
-    }
+    	String positive = numerator + "/" + denominator;
+       	String negative = -1 * numerator + "/" + -1 * denominator;
+    	
+    	if (this.numerator < 0 && this.denominator >=0){
+    		return positive;
+    	}
+    		
+    		if (this.numerator >= 0 && this.denominator <0){
+        		return negative;
+    		}
+    		
+    		if (this.numerator < 0 && this.denominator <0){
+        		return negative;
+    		}
+    		
+    		return positive;
+}
 }

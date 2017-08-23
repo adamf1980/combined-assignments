@@ -100,13 +100,14 @@ interface IRational {
 	 */
 	default IRational sub(IRational that) {
 		if(that == null){
-			throw new IllegalArgumentException();
-		}
-		IRational subtraction = construct((this.getNumerator()*that.getDenominator()) - (that.getDenominator() * (this.getDenominator())), (this.getDenominator() * that.getDenominator()));
+			throw new IllegalArgumentException();}
 		
+		int numerator = (this.getNumerator() * that.getDenominator()) - (that.getNumerator() * this.getDenominator());
+		int denominator = (this.getDenominator() * that.getDenominator());
 		
-		
-		return subtraction;
+		return construct(numerator,denominator);
+				
+			
 	}
 
 	/**

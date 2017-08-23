@@ -3,6 +3,9 @@ package com.cooksys.ftd.assignments.objects;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SimplifiedRational implements IRational {
+	
+	int numerator;
+	int denominator;
     /**
      * Determines the greatest common denominator for the given values
      *
@@ -12,15 +15,15 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if a <= 0 or b < 0
      */
     public static int gcd(int a, int b) {
-    	int gcd = 0;
+    	
     	if (a <= 0 || b < 0){
     		throw new IllegalArgumentException();
     	}
-		while (b%a==0 && a!=1){
-			 gcd = b/a;
-		}
+		if (b==0)
+			return a;
 		
-		return gcd;
+		
+		return gcd(b,a%b);
     	
     	
     }
@@ -43,15 +46,14 @@ public class SimplifiedRational implements IRational {
     		throw new IllegalArgumentException();
     	}
     	
-    	int[] array = new int[2];
     	
     	
-    	while (denominator%numerator == 0){
-    		array[0] = numerator;
-    		array[1] = denominator;
-    	}
     	
-    	return array;
+    	int divisor = gcd(Math.abs(numerator), Math.abs(denominator));
+    	int [] simplified = {numerator/divisor, denominator/divisor};
+    	
+    	return simplified;
+
     	
     	
     	
@@ -75,17 +77,30 @@ public class SimplifiedRational implements IRational {
     		throw new IllegalArgumentException();
     	}
     	
-    	while (denominator%numerator == 0){
-    		
+    	this.numerator = numerator;
+    	this.denominator = denominator;
+    	
+    	if (numerator == 0)
+    		return;
+    	
+    	int[] n = simplify(numerator, denominator);
+    	this.numerator = n[0];
+    	this.denominator = n[1];
+    	
+    	   		
     	}
-    }
+    
+    
+   
+    
 
     /**
      * @return the numerator of this rational number
      */
     @Override
     public int getNumerator() {
-        return this.getNumerator();
+        return numerator;
+        
     }
 
     /**
@@ -93,7 +108,7 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public int getDenominator() {
-       return this.getDenominator();
+       return denominator;
     }
 
     /**
@@ -108,13 +123,16 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     @Override
-    public SimplifiedRational construct(int numerator, int denominator) {
-    	if (denominator == 0){
+    public SimplifiedRational construct(int numerator, int denominator) throws IllegalArgumentException {
+    	if (denominator == 0)
     		throw new IllegalArgumentException();
-    	}
-		return null;
+    	
+		
+    	SimplifiedRational rational = new SimplifiedRational(numerator, denominator);
+    	return rational;
     	
     	
+		
     }
 
     /**
@@ -125,11 +143,8 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-    	Object comparableObject = this.getNumerator()/this.getDenominator();
-		if (comparableObject == obj){
-			
-    	return true;
-    }
+    	if(obj instanceof SimplifiedRational)
+    		return ((SimplifiedRational)obj).toString().equals(this.toString());
     
     return false;
     }
@@ -143,14 +158,28 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public String toString() {
-    	String stringNum = String.valueOf(this.getNumerator());
-        String stringDenom = String.valueOf(this.getDenominator());
-        
-        if (this.getNumerator()/this.getDenominator() > -1){
-        	return (stringNum + "/" + stringDenom);
-        }
-        
-        return ("-" + stringDenom + "/" + stringNum);
+    	String positive = numerator + "/" + denominator;
+       	String negative = -1 * numerator + "/" + -1 * denominator;
+    	
+    	if (this.numerator < 0 && this.denominator >=0){
+    		return positive;
+    	}
+    		
+    		if (this.numerator >= 0 && this.denominator <0){
+        		return negative;
+    		}
+    		
+    		if (this.numerator < 0 && this.denominator <0){
+        		return negative;
+    		}
+    		
+    		return positive;
+        		
+        		
+    		
+    		
+    	}
+    
     }
-    }
+
 
