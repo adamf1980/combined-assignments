@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public interface Hierarchy<Element extends Hierarchical<Element, Parent>, Parent extends Element> {
 
+	
+	
     /**
      * Adds a given element to the hierarchy.
      * <p>

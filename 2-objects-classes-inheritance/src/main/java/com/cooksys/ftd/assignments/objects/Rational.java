@@ -1,5 +1,7 @@
 package com.cooksys.ftd.assignments.objects;
 
+import java.util.ArrayList;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Rational implements IRational {
@@ -24,8 +26,11 @@ public class Rational implements IRational {
     	
     	this.numerator = numerator;
     	this.denominator = denominator;
+    	
+    	 
     }
-
+    
+   
     /**
      * @return the numerator of this rational number
      */
