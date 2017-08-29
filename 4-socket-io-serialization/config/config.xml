@@ -1,0 +1,6 @@
+<config>
+	<local port="4455"></local>
+	<remote host="10.1.1.164" port="4455"></remote>
+	<student-file-path>/IO-Serialization/combined-assignments/4-socket-io-serialization/config/student.xml</student-file-path>
+</config>
+

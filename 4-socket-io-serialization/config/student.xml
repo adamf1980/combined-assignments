@@ -1,0 +1,5 @@
+<student firstName="Adam" lastName="Fetters">
+	<favorite-ide>Netbeans</favorite-ide>
+	<favorite-language>Java</favorite-language>
+	<favorite-paradigm>OOP</favorite-paradigm>
+</student>
